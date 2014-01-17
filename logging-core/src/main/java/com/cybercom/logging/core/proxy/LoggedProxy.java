@@ -1,10 +1,10 @@
-package com.cybercom.logging.proxy;
+package com.cybercom.logging.core.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import com.cybercom.logging.DebugObjectMapper;
+import com.cybercom.logging.core.DebugObjectMapper;
 
 
 public class LoggedProxy<T> implements InvocationHandler {

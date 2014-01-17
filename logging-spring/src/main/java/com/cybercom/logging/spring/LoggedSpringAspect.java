@@ -7,8 +7,9 @@ import javax.annotation.PostConstruct;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import com.cybercom.logging.DebugObjectMapper;
-import com.cybercom.logging.MarkerProvider;
+
+import com.cybercom.logging.core.DebugObjectMapper;
+import com.cybercom.logging.core.MarkerProvider;
 import com.fasterxml.jackson.databind.JsonSerializer;
 
 @Aspect

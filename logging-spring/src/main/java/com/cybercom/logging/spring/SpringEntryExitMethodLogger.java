@@ -5,9 +5,9 @@ import java.util.List;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 
-import com.cybercom.logging.DebugObjectMapper;
-import com.cybercom.logging.EntryExitMethodLogger;
-import com.cybercom.logging.MarkerProvider;
+import com.cybercom.logging.core.DebugObjectMapper;
+import com.cybercom.logging.core.EntryExitMethodLogger;
+import com.cybercom.logging.core.MarkerProvider;
 
 public class SpringEntryExitMethodLogger extends EntryExitMethodLogger {
 	

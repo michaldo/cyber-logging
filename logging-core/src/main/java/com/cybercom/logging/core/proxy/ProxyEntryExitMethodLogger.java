@@ -1,12 +1,12 @@
-package com.cybercom.logging.proxy;
+package com.cybercom.logging.core.proxy;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import com.cybercom.logging.DebugObjectMapper;
-import com.cybercom.logging.EntryExitMethodLogger;
-import com.cybercom.logging.MarkerProvider;
+import com.cybercom.logging.core.DebugObjectMapper;
+import com.cybercom.logging.core.EntryExitMethodLogger;
+import com.cybercom.logging.core.MarkerProvider;
 
 public class ProxyEntryExitMethodLogger extends EntryExitMethodLogger {
 

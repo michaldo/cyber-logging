@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.interceptor.InvocationContext;
 
-import com.cybercom.logging.DebugObjectMapper;
-import com.cybercom.logging.EntryExitMethodLogger;
-import com.cybercom.logging.MarkerProvider;
+import com.cybercom.logging.core.DebugObjectMapper;
+import com.cybercom.logging.core.EntryExitMethodLogger;
+import com.cybercom.logging.core.MarkerProvider;
 
 public class EjbEntryExitMethodLogger extends EntryExitMethodLogger {
 	

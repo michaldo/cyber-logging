@@ -3,7 +3,7 @@ package com.cybercom.logging.ejb;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
-import com.cybercom.logging.DebugObjectMapper;
+import com.cybercom.logging.core.DebugObjectMapper;
 
 public class LoggedInterceptor {
 	
