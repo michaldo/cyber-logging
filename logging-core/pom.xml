@@ -1,9 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.cybercom</groupId>
   <artifactId>logging-core</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <parent>
+    <groupId>com.cybercom</groupId>
+    <artifactId>cyber-logging</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
   <dependencies>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -17,106 +20,4 @@
     </dependency>
 
   </dependencies>
-
-  <properties>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
-  </properties>
-  <profiles>
-    <profile>
-      <id>spring</id>
-      <properties>
-        <profileName>spring</profileName>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>org.aspectj</groupId>
-          <artifactId>aspectjrt</artifactId>
-          <version>1.7.3</version>
-        </dependency>
-        <dependency>
-          <groupId>org.aspectj</groupId>
-          <artifactId>aspectjweaver</artifactId>
-          <version>1.7.3</version>
-        </dependency>
-      </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.1</version>
-            <configuration>
-              <excludes>
-                <exclude>**/ejb/*.java</exclude>
-              </excludes>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>ejb</id>
-      <properties>
-        <profileName>ejb</profileName>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.openejb</groupId>
-          <artifactId>openejb-core</artifactId>
-          <version>4.5.2</version>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.1</version>
-            <configuration>
-              <excludes>
-                <exclude>**/spring/*.java</exclude>
-              </excludes>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>core</id>
-      <properties>
-        <profileName>core</profileName>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.1</version>
-            <configuration>
-              <excludes>
-                <exclude>**/spring/*.java</exclude>
-                <exclude>**/ejb/*.java</exclude>
-              </excludes>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-
-    </profile>
-
-  </profiles>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <classifier>${profileName}</classifier>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>

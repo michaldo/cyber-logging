@@ -5,4 +5,14 @@
   <artifactId>cyber-logging</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <modules>
+    <module>logging-core</module>
+    <module>logging-ejb</module>
+    <module>logging-spring</module>
+  </modules>
+  <properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+  </properties>
+  
 </project>
