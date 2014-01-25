@@ -11,6 +11,10 @@ public class ToStringSerializer extends JsonSerializer<Object> {
 	
 	private Class<Object> handledType;
 	
+	public ToStringSerializer() {
+		
+	}
+	
 	public ToStringSerializer(Class<Object> handledType) {
 		this.handledType = handledType;
 	}

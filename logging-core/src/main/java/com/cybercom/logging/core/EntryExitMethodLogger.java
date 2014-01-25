@@ -66,7 +66,7 @@ public abstract class EntryExitMethodLogger {
 		if (!LOGGER.isDebugEnabled()) {
 			return callRealMethod();
 		}
-		if (isMethodExcludedByAnnotation()) {
+		if (isMethodExcludedByNotLoggedAnnotation()) {
 			return callRealMethod();
 		}
 
@@ -181,7 +181,7 @@ public abstract class EntryExitMethodLogger {
 		return excludedCustomTypes.contains(o.getClass().getName());
 	}
 	
-	private boolean isMethodExcludedByAnnotation() {
+	private boolean isMethodExcludedByNotLoggedAnnotation() {
 		Annotation[] methodAnnotations = method.getAnnotations();
 		for (Annotation annotation : methodAnnotations) {
 			if (NotLogged.class.isAssignableFrom(annotation.getClass())) {

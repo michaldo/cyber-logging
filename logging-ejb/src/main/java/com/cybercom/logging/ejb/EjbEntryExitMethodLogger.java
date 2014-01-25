@@ -12,7 +12,7 @@ public class EjbEntryExitMethodLogger extends EntryExitMethodLogger {
 	
 	private InvocationContext ic;
 
-	protected EjbEntryExitMethodLogger(MarkerProvider markerProvider,
+	public EjbEntryExitMethodLogger(MarkerProvider markerProvider,
 			DebugObjectMapper mapper, List<String> excludedCustomTypes,
 			boolean excludeDefaultTypes, InvocationContext ic) {
 		super(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes, ic.getTarget(), ic.getMethod(), ic.getParameters());

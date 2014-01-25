@@ -1,4 +1,4 @@
-package com.cybercom.logging.core;
+package com.cybercom.logging.spring;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

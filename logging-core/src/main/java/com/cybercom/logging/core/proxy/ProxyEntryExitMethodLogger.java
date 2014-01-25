@@ -21,7 +21,7 @@ public class ProxyEntryExitMethodLogger extends EntryExitMethodLogger {
 	@Override
 	protected Object callRealMethod() throws Throwable {
 		try {
-		return method.invoke(target, args);
+			return method.invoke(target, args);
 		} catch (InvocationTargetException e) {
 			throw e.getCause();
 		}

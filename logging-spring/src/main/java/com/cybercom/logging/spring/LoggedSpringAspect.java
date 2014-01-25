@@ -35,8 +35,8 @@ public class LoggedSpringAspect {
 
 	}
 
-	@Around("(@within(com.cybercom.logging.Logged) || @annotation(com.cybercom.logging.Logged)) "
-			+ "&& !@annotation(com.cybercom.logging.NotLogged)")
+	@Around("(@target(com.cybercom.logging.spring.Logged) || @annotation(com.cybercom.logging.spring.Logged)) "
+			+ "&& !@annotation(com.cybercom.logging.core.NotLogged)")
 	public Object debug(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
 		return new SpringEntryExitMethodLogger(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes, proceedingJoinPoint).logEntryExit();

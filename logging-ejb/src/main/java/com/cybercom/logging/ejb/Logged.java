@@ -10,6 +10,6 @@ import javax.interceptor.Interceptors;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Interceptors(LoggedInterceptor.class)
-public @interface EjbLogged {
+public @interface Logged {
 
 }
