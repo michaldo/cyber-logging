@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>logging-spring</artifactId>
   <parent>
-    <groupId>com.cybercom</groupId>
+    <groupId>com.cybercom.logging</groupId>
     <artifactId>cyber-logging</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
