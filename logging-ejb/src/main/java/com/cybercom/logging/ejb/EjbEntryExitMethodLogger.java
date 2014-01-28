@@ -9,18 +9,18 @@ import com.cybercom.logging.core.EntryExitMethodLogger;
 import com.cybercom.logging.core.MarkerProvider;
 
 public class EjbEntryExitMethodLogger extends EntryExitMethodLogger {
-	
-	private InvocationContext ic;
 
-	public EjbEntryExitMethodLogger(MarkerProvider markerProvider,
-			DebugObjectMapper mapper, List<String> excludedCustomTypes,
-			boolean excludeDefaultTypes, InvocationContext ic) {
-		super(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes, ic.getTarget(), ic.getMethod(), ic.getParameters());
-		this.ic = ic;
-	}
+   private InvocationContext ic;
 
-	@Override
-	protected Object callRealMethod() throws Exception {
-		return ic.proceed();
-	}
+   public EjbEntryExitMethodLogger(MarkerProvider markerProvider, DebugObjectMapper mapper,
+         List<String> excludedCustomTypes, boolean excludeDefaultTypes, InvocationContext ic) {
+      super(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes, ic.getTarget(), ic.getMethod(), ic
+            .getParameters());
+      this.ic = ic;
+   }
+
+   @Override
+   protected Object callRealMethod() throws Exception {
+      return ic.proceed();
+   }
 }

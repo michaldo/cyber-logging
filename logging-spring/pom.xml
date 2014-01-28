@@ -28,8 +28,8 @@
       <version>1.7.3</version>
     </dependency>
   </dependencies>
-  
-    <build>
+
+  <build>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

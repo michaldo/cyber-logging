@@ -11,47 +11,43 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 /**
- * The class is JSON Object Mapper dedicated to write objects to debug logs. The
- * main feature is special treatment byte arrays, because byte array is usually
- * content of binary file and writing to file is useless
+ * The class is JSON Object Mapper dedicated to write objects to debug logs. The main feature is special treatment byte
+ * arrays, because byte array is usually content of binary file and writing to file is useless
  * 
  * @author Michal.Domagala
- * 
  */
 public class DebugObjectMapper extends ObjectMapper {
-	
-	private SimpleModule myModule; 
 
-	public DebugObjectMapper() {
-		myModule = new SimpleModule();
-		myModule.addSerializer(new ByteArraySerializer());
-		registerModule(myModule);
-		configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-	}
-	
-	public void addJsonSerializer(JsonSerializer<?> jsonSerializer) {
-		myModule.addSerializer(jsonSerializer);
-	}
-	
+   private SimpleModule myModule;
 
-	class ByteArraySerializer extends JsonSerializer<byte[]> {
+   public DebugObjectMapper() {
+      myModule = new SimpleModule();
+      myModule.addSerializer(new ByteArraySerializer());
+      registerModule(myModule);
+      configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+   }
 
-		@Override
-		public Class<byte[]> handledType() {
-			return byte[].class;
-		}
+   public void addJsonSerializer(JsonSerializer<?> jsonSerializer) {
+      myModule.addSerializer(jsonSerializer);
+   }
 
-		@Override
-		public void serialize(byte[] value, JsonGenerator jgen,
-				SerializerProvider provider) throws IOException,
-				JsonProcessingException {
-			if (value == null) {
-				jgen.writeString("null");
-			} else {
-				jgen.writeString("byte array length=" + value.length);
-			}
-		}
+   class ByteArraySerializer extends JsonSerializer<byte[]> {
 
-	}
+      @Override
+      public Class<byte[]> handledType() {
+         return byte[].class;
+      }
+
+      @Override
+      public void serialize(byte[] value, JsonGenerator jgen, SerializerProvider provider) throws IOException,
+            JsonProcessingException {
+         if (value == null) {
+            jgen.writeString("null");
+         } else {
+            jgen.writeString("byte array length=" + value.length);
+         }
+      }
+
+   }
 
 }

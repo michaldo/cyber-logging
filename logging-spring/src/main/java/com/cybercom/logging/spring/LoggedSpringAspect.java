@@ -15,55 +15,56 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 @Aspect
 public class LoggedSpringAspect {
 
-	private MarkerProvider markerProvider;
+   private MarkerProvider markerProvider;
 
-	private DebugObjectMapper mapper = new DebugObjectMapper();
+   private DebugObjectMapper mapper = new DebugObjectMapper();
 
-	private List<JsonSerializer<?>> serializers;
+   private List<JsonSerializer<?>> serializers;
 
-	private List<String> excludedCustomTypes;
-	
-	private boolean excludeDefaultTypes = true;
+   private List<String> excludedCustomTypes;
 
-	@PostConstruct
-	void init() {
-		if (serializers != null) {
-			for (JsonSerializer<?> jsonSerializer : serializers) {
-				mapper.addJsonSerializer(jsonSerializer);
-			}
-		}
+   private boolean excludeDefaultTypes = true;
 
-	}
+   @PostConstruct
+   void init() {
+      if (serializers != null) {
+         for (JsonSerializer<?> jsonSerializer : serializers) {
+            mapper.addJsonSerializer(jsonSerializer);
+         }
+      }
 
-	@Around("(@target(com.cybercom.logging.spring.Logged) || @annotation(com.cybercom.logging.spring.Logged)) "
-			+ "&& !@annotation(com.cybercom.logging.core.NotLogged)")
-	public Object debug(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+   }
 
-		return new SpringEntryExitMethodLogger(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes, proceedingJoinPoint).logEntryExit();
-	}
+   @Around("(@target(com.cybercom.logging.spring.Logged) || @annotation(com.cybercom.logging.spring.Logged)) "
+         + "&& !@annotation(com.cybercom.logging.core.NotLogged)")
+   public Object debug(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
-	public MarkerProvider getMarkerProvider() {
-		return markerProvider;
-	}
+      return new SpringEntryExitMethodLogger(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes,
+            proceedingJoinPoint).logEntryExit();
+   }
 
-	public void setMarkerProvider(MarkerProvider markerProvider) {
-		this.markerProvider = markerProvider;
-	}
+   public MarkerProvider getMarkerProvider() {
+      return markerProvider;
+   }
 
-	public List<String> getExcludedCustomTypes() {
-		return excludedCustomTypes;
-	}
+   public void setMarkerProvider(MarkerProvider markerProvider) {
+      this.markerProvider = markerProvider;
+   }
 
-	public void setExcludedCustomTypes(List<String> excludedCustomTypes) {
-		this.excludedCustomTypes = excludedCustomTypes;
-	}
+   public List<String> getExcludedCustomTypes() {
+      return excludedCustomTypes;
+   }
 
-	public List<JsonSerializer<?>> getSerializers() {
-		return serializers;
-	}
+   public void setExcludedCustomTypes(List<String> excludedCustomTypes) {
+      this.excludedCustomTypes = excludedCustomTypes;
+   }
 
-	public void setSerializers(List<JsonSerializer<?>> serializers) {
-		this.serializers = serializers;
-	}
+   public List<JsonSerializer<?>> getSerializers() {
+      return serializers;
+   }
+
+   public void setSerializers(List<JsonSerializer<?>> serializers) {
+      this.serializers = serializers;
+   }
 
 }

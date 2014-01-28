@@ -10,21 +10,18 @@ import com.cybercom.logging.core.MarkerProvider;
 
 public class ProxyEntryExitMethodLogger extends EntryExitMethodLogger {
 
-	public ProxyEntryExitMethodLogger(MarkerProvider markerProvider,
-			DebugObjectMapper mapper, List<String> excludedCustomTypes,
-			boolean excludeDefaultTypes, Object target, Method method,
-			Object[] args) {
-		super(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes,
-				target, method, args);
-	}
+   public ProxyEntryExitMethodLogger(MarkerProvider markerProvider, DebugObjectMapper mapper,
+         List<String> excludedCustomTypes, boolean excludeDefaultTypes, Object target, Method method, Object[] args) {
+      super(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes, target, method, args);
+   }
 
-	@Override
-	protected Object callRealMethod() throws Throwable {
-		try {
-			return method.invoke(target, args);
-		} catch (InvocationTargetException e) {
-			throw e.getCause();
-		}
-	}
+   @Override
+   protected Object callRealMethod() throws Throwable {
+      try {
+         return method.invoke(target, args);
+      } catch (InvocationTargetException e) {
+         throw e.getCause();
+      }
+   }
 
 }
