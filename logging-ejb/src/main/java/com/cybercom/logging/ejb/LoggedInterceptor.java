@@ -5,6 +5,12 @@ import javax.interceptor.InvocationContext;
 
 import com.cybercom.logging.core.DebugObjectMapper;
 
+/**
+ * The Class LoggedInterceptor is default interceptor to handle default annotation *.ejb.Logged
+ * Create own annotation and interceptor for customization (for example, to add custom
+ * MarkerProvider)
+ * 
+ */
 public class LoggedInterceptor {
 
    private DebugObjectMapper mapper = new DebugObjectMapper();

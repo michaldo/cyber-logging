@@ -35,7 +35,7 @@ public class LoggedSpringAspect {
 
    }
 
-   @Around("(@target(com.cybercom.logging.spring.Logged) || @annotation(com.cybercom.logging.spring.Logged)) "
+   @Around("(@within(com.cybercom.logging.spring.Logged) || @annotation(com.cybercom.logging.spring.Logged)) "
          + "&& !@annotation(com.cybercom.logging.core.NotLogged)")
    public Object debug(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
