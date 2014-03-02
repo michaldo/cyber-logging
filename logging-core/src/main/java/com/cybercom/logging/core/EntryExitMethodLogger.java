@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Michal Domagala
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.cybercom.logging.core;
 
 import java.lang.annotation.Annotation;
@@ -36,6 +58,24 @@ public abstract class EntryExitMethodLogger {
 
    protected Object[] args;
 
+   /**
+    * Instantiates a new entry exit method logger.
+    *
+    * @param markerProvider the marker provider returns string which can logically connect several method calls. 
+    * Good candidate is session id which allows grep all methods called within single session
+    * Null is accepted.
+    * @param mapper the mapper maps classes to their serializers. DebugObjectMapper use Json serializer is used to 
+    * print object to logs except byte array, when length is logged only 
+    * (byte array is usually file content and logging content is useless).
+    * Mapper can be enhanced by custom serializers 
+    * @param excludedCustomTypes List of fully qualified name of classes which must NOT be logged.
+    * Good candidate is class with private data or huge class 
+    * @param excludeDefaultTypes Some classes, for example javax.servlet.ServletRequest do not produce useful info when logged
+    * If true, those classes are ignored, otherwise are not ignored 
+    * @param target the target being logged
+    * @param method the method being logged
+    * @param args the args being logged
+    */
    protected EntryExitMethodLogger(MarkerProvider markerProvider, DebugObjectMapper mapper,
          List<String> excludedCustomTypes, boolean excludeDefaultTypes, Object target, Method method, Object[] args) {
       this.markerProvider = markerProvider;
