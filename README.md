@@ -81,3 +81,4 @@ To achieve the goal, child modules (**logging-ejb**, **logging-spring**) include
 To work with cyber-logging with Eclipse I import all projects and add dependency to **logging-core** manually
 
 
+
