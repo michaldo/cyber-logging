@@ -60,13 +60,61 @@ Spring usage
 
 For custom logging policy, Spring not need custom implementation, because policy can be configured in Spring descriptor
 
+#### Minimal Spring configuration
+
+Add to your pom repository 
+
+	<repositories>		
+      <repository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>nex</id>
+      <name>nex</name>
+      <url>https://oss.sonatype.org/content/groups/public</url>
+    </repository>		
+	</repositories>
+	
+Add to your pom dependency
+
+    <dependency>
+	  <groupId>com.cybercom.logging</groupId>
+	  <artifactId>logging-spring</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+    </dependency>	
+
+Configure the bean
+
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+    <bean class="com.cybercom.logging.spring.LoggedSpringAspect"/>
+
+Log level configuration
+-----
+
+Cyber-logging use [slf4j](http://www.slf4j.org/) facade for logging. Level is debug. To see logged data configure
+**com.cybercom.logging.core.EntryExitMethodLogger** on level DEBUG 
+
+
+Troubleshooting
+----------
+
+#### Nothing is logged
+Add to the following line to your code:
+
+    org.slf4j.LoggerFactory.getLogger("com.cybercom.logging.core.EntryExitMethodLogger").debug("Check logging");
+    
+If you see message *Check logging* in your logs then log configuration is OK and problem is somewhere else
+Otherwise fix log configuration
+
+#### I have error "error the @within pointcut expression is only supported at Java 5 compliance level or above"
+
+see http://stackoverflow.com/questions/15678417/error-when-using-aspectj-aop-with-java-7
+
+
 Configuration
 -----
 
 See Javadoc for EntryExitMethodLogger
-
-Cyber-logging use [slf4j](http://www.slf4j.org/) facade for logging. Level is debug. To see logged data configure
-**com.cybercom.logging.core.EntryExitMethodLogger** on level DEBUG 
 
 Examples
 --------
