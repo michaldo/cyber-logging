@@ -55,6 +55,10 @@ Spring usage
 
 1. Activate aspects in you application
 2. Define and configure bean **com.cybercom.logging.spring.LoggedSpringAspect**
+3. Annotate Spring bean on class or method level with annotation **com.cybercom.logging.spring.Logged**.
+
+    @Logged
+    public class MyBean...
 
 [Example](https://github.com/michaldo/cyber-logging-demo/blob/master/demo-logging-spring/src/test/resources/spring-beans.xml)
 
@@ -85,6 +89,11 @@ Add to your pom dependency
 
 Configure the bean
 
+    <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     <aop:aspectj-autoproxy proxy-target-class="true" />
     <bean class="com.cybercom.logging.spring.LoggedSpringAspect"/>
 
