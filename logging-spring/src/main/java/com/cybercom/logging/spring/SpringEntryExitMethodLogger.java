@@ -36,7 +36,7 @@ public class SpringEntryExitMethodLogger extends EntryExitMethodLogger {
    private ProceedingJoinPoint proceedingJoinPoint;
 
    public SpringEntryExitMethodLogger(MarkerProvider markerProvider, DebugObjectMapper mapper,
-         List<String> excludedCustomTypes, boolean excludeDefaultTypes, ProceedingJoinPoint proceedingJoinPoint) {
+         List<Class<?>> excludedCustomTypes, boolean excludeDefaultTypes, ProceedingJoinPoint proceedingJoinPoint) {
       super(markerProvider, mapper, excludedCustomTypes, excludeDefaultTypes, proceedingJoinPoint.getTarget(),
             ((MethodSignature) proceedingJoinPoint.getSignature()).getMethod(), proceedingJoinPoint.getArgs());
       this.proceedingJoinPoint = proceedingJoinPoint;

@@ -39,16 +39,26 @@ public abstract class EntryExitMethodLogger {
 
    private final static Logger LOGGER = LoggerFactory.getLogger(EntryExitMethodLogger.class);
 
-   private final static List<String> EXCLUDED_DEFAULT_TYPES = Arrays
-         .asList(new String[] {"javax.servlet.ServletRequest", "javax.servlet.ServletResponse",
-               "javax.servlet.http.HttpSession", "org.springframework.validation.BindingResult",
-               "org.springframework.validation.support.BindingAwareModelMap"});
+   private final static List<Class<?>> EXCLUDED_DEFAULT_TYPES = new ArrayList<Class<?>>();
+   
+   static {
+      for (String className : new String[]{"javax.servlet.ServletRequest", "javax.servlet.ServletResponse",
+         "javax.servlet.http.HttpSession", "org.springframework.validation.BindingResult",
+         "org.springframework.validation.support.BindingAwareModelMap"}) {
+         try {
+            EXCLUDED_DEFAULT_TYPES.add(Class.forName(className));
+         } catch (ClassNotFoundException ex) {
+            break;
+         }
+         
+      }
+   }
 
    protected MarkerProvider markerProvider;
 
    private DebugObjectMapper mapper;
 
-   private List<String> excludedCustomTypes;
+   private List<Class<?>> excludedCustomTypes;
 
    private boolean excludeDefaultTypes = true;
 
@@ -68,7 +78,7 @@ public abstract class EntryExitMethodLogger {
     * print object to logs except byte array, when length is logged only 
     * (byte array is usually file content and logging content is useless).
     * Mapper can be enhanced by custom serializers 
-    * @param excludedCustomTypes List of fully qualified name of classes which must NOT be logged.
+    * @param excludedCustomTypes2 List of fully qualified name of classes which must NOT be logged.
     * Good candidate is class with private data or huge class 
     * @param excludeDefaultTypes Some classes, for example javax.servlet.ServletRequest do not produce useful info when logged
     * If true, those classes are ignored, otherwise are not ignored 
@@ -77,7 +87,7 @@ public abstract class EntryExitMethodLogger {
     * @param args the args being logged
     */
    protected EntryExitMethodLogger(MarkerProvider markerProvider, DebugObjectMapper mapper,
-         List<String> excludedCustomTypes, boolean excludeDefaultTypes, Object target, Method method, Object[] args) {
+         List<Class<?>> excludedCustomTypes, boolean excludeDefaultTypes, Object target, Method method, Object[] args) {
       this.markerProvider = markerProvider;
       this.mapper = mapper;
       this.excludedCustomTypes = excludedCustomTypes;
@@ -192,14 +202,24 @@ public abstract class EntryExitMethodLogger {
       if (!excludeDefaultTypes) {
          return false;
       }
-      return EXCLUDED_DEFAULT_TYPES.contains(o.getClass().getName());
+      for (Class<?> c : EXCLUDED_DEFAULT_TYPES) {
+         if (c.isAssignableFrom(o.getClass())) {
+            return true;
+         }
+      }
+      return false;
    }
 
    private boolean isExcludedByCustomType(Object o) {
       if (excludedCustomTypes == null) {
          return false;
       }
-      return excludedCustomTypes.contains(o.getClass().getName());
+      for (Class<?> c : excludedCustomTypes) {
+         if (c.isAssignableFrom(o.getClass())) {
+            return true;
+         }
+      }
+      return false;
    }
 
    private boolean isMethodExcludedByNotLoggedAnnotation() {

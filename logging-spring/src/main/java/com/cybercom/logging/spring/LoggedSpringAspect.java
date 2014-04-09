@@ -22,6 +22,7 @@
  */
 package com.cybercom.logging.spring;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +44,7 @@ public class LoggedSpringAspect {
 
    private List<JsonSerializer<?>> serializers;
 
-   private List<String> excludedCustomTypes;
+   private List<Class<?>> excludedCustomTypes = new ArrayList<Class<?>>();
 
    private boolean excludeDefaultTypes = true;
 
@@ -73,12 +74,10 @@ public class LoggedSpringAspect {
       this.markerProvider = markerProvider;
    }
 
-   public List<String> getExcludedCustomTypes() {
-      return excludedCustomTypes;
-   }
-
-   public void setExcludedCustomTypes(List<String> excludedCustomTypes) {
-      this.excludedCustomTypes = excludedCustomTypes;
+   public void setExcludedCustomTypes(List<String> excludedNames) throws ClassNotFoundException {
+      for (String className : excludedNames) {
+         excludedCustomTypes.add(Class.forName(className));
+      }
    }
 
    public List<JsonSerializer<?>> getSerializers() {
