@@ -202,6 +202,9 @@ public abstract class EntryExitMethodLogger {
       if (!excludeDefaultTypes) {
          return false;
       }
+      if (o == null) {
+         return false;
+      }
       for (Class<?> c : EXCLUDED_DEFAULT_TYPES) {
          if (c.isAssignableFrom(o.getClass())) {
             return true;
@@ -212,6 +215,9 @@ public abstract class EntryExitMethodLogger {
 
    private boolean isExcludedByCustomType(Object o) {
       if (excludedCustomTypes == null) {
+         return false;
+      }
+      if (o == null) {
          return false;
       }
       for (Class<?> c : excludedCustomTypes) {

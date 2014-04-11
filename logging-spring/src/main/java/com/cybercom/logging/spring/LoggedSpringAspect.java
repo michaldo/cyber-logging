@@ -55,7 +55,6 @@ public class LoggedSpringAspect {
             mapper.addJsonSerializer(jsonSerializer);
          }
       }
-
    }
 
    @Around("(@within(com.cybercom.logging.spring.Logged) || @annotation(com.cybercom.logging.spring.Logged)) "
@@ -80,12 +79,13 @@ public class LoggedSpringAspect {
       }
    }
 
-   public List<JsonSerializer<?>> getSerializers() {
-      return serializers;
-   }
-
    public void setSerializers(List<JsonSerializer<?>> serializers) {
       this.serializers = serializers;
+   }
+
+   
+   public void setExcludeDefaultTypes(boolean excludeDefaultTypes) {
+      this.excludeDefaultTypes = excludeDefaultTypes;
    }
 
 }
