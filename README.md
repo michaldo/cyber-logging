@@ -40,6 +40,14 @@ LoggedProxy applies default logging policy. For custom policy, use own implement
 In order to use cyber-logging with pojo object the object must implement interface with methods for logging. This requirement may be burdensome. Need of interfaces may be 
 replaced by using cglib. Please open issue in github to request cglib option
 
+Join logging to your application
+
+    <dependency>
+      <groupId>com.cybercom.logging</groupId>
+      <artifactId>logging-core</artifactId>
+	  <version>0.0.1</version>
+    </dependency>
+
 EJB usage
 ----------
 
@@ -50,12 +58,21 @@ Annotate EJB on class or method level with annotaton **com.cybercom.logging.ejb.
 
 For custom logging policy, use own annotation and interceptor. [Example](https://github.com/michaldo/cyber-logging-demo/tree/master/demo-logging-ejb/src/test/java/com/cybercom/demo/logging/ejb/custom)
 
+Join logging to your application
+
+    <dependency>
+      <groupId>com.cybercom.logging</groupId>
+	  <artifactId>logging-ejb</artifactId>
+	  <version>0.0.1</version>
+    </dependency>	
+
 Spring usage
 ----------
 
 1. Activate aspects in you application
 2. Define and configure bean **com.cybercom.logging.spring.LoggedSpringAspect**
 3. Annotate Spring bean on class or method level with annotation **com.cybercom.logging.spring.Logged**.
+
 
     @Logged
     public class MyBean...
@@ -66,25 +83,12 @@ For custom logging policy, Spring not need custom implementation, because policy
 
 #### Minimal Spring configuration
 
-Add to your pom repository 
-
-	<repositories>		
-      <repository>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>nex</id>
-      <name>nex</name>
-      <url>https://oss.sonatype.org/content/groups/public</url>
-    </repository>		
-	</repositories>
-	
 Add to your pom dependency
 
     <dependency>
 	  <groupId>com.cybercom.logging</groupId>
 	  <artifactId>logging-spring</artifactId>
-	  <version>0.0.1-SNAPSHOT</version>
+	  <version>0.0.1</version>
     </dependency>	
 
 Configure the bean
@@ -112,7 +116,7 @@ Add to the following line to your code:
 
     org.slf4j.LoggerFactory.getLogger("com.cybercom.logging.core.EntryExitMethodLogger").debug("Check logging");
     
-If you see message *Check logging* in your logs then log configuration is OK and problem is somewhere else
+If you see message *Check logging* in your logs then log configuration is OK and problem is somewhere else.
 Otherwise fix log configuration
 
 #### I have error "error the @within pointcut expression is only supported at Java 5 compliance level or above"
