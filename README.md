@@ -1,6 +1,8 @@
-cyber-logging
+cyber-logging 
 =============
 
+> *Crafted with ♥ in Cybercom Poland*
+  
 Cyber-logging is tool to log Java method input and output just by single annotation. 
 
 Although using annotation for logging is typical, cyber-logging simplifies effort get full-feature log content.
@@ -45,7 +47,7 @@ Join logging to your application
     <dependency>
       <groupId>com.cybercom.logging</groupId>
       <artifactId>logging-core</artifactId>
-	  <version>0.0.1</version>
+      <version>0.0.1</version>
     </dependency>
 
 EJB usage
@@ -73,9 +75,10 @@ Spring usage
 2. Define and configure bean **com.cybercom.logging.spring.LoggedSpringAspect**
 3. Annotate Spring bean on class or method level with annotation **com.cybercom.logging.spring.Logged**.
 
-
-    @Logged
-    public class MyBean...
+```
+@Logged
+public class MyBean...
+```
 
 [Example](https://github.com/michaldo/cyber-logging-demo/blob/master/demo-logging-spring/src/test/resources/spring-beans.xml)
 
