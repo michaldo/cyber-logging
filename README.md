@@ -28,7 +28,7 @@ cyber-logging benefits
 4. Possible enhance logs with extra information, for example session id, username, to help tracking concrete flow
 5. Uniform usage for POJO, Spring and EJB (as much as possible)
 
-POJO usage
+POJO usage - JDK proxy
 ----------
 
 Manually build proxy over target object to catch method calls and trigger logging. Example:
@@ -37,18 +37,38 @@ Manually build proxy over target object to catch method calls and trigger loggin
     IMyBean proxy = LoggedProxy.createProxy(target, IMyBean.class);
     proxy.foo();
 
-LoggedProxy applies default logging policy. For custom policy, use own implementation. [I'm an inline-style link](https://www.google.com)
+LoggedProxy applies default logging policy. For custom policy, use own implementation. 
 
-In order to use cyber-logging with pojo object the object must implement interface with methods for logging. This requirement may be burdensome. Need of interfaces may be 
-replaced by using cglib. Please open issue in github to request cglib option
+In order to use cyber-logging with pojo object the object must implement interface with methods for logging. This requirement may be burdensome. 
 
 Join logging to your application
 
     <dependency>
       <groupId>com.cybercom.logging</groupId>
       <artifactId>logging-core</artifactId>
-      <version>0.0.1</version>
+      <version>0.0.2</version>
     </dependency>
+    
+POJO usage - cglib
+----------
+
+Manually build proxy over target object to catch method calls and trigger logging. Example:
+
+    MyBean target = new MyBean();
+    MyBean proxy = LoggedCglibProxy.createProxy(target);
+    proxy.foo();
+
+LoggedCglibProxy applies default logging policy. For custom policy, use own implementation. 
+
+Classes don't have to have interface to be proxied by cglib
+
+Join logging to your application
+
+    <dependency>
+      <groupId>com.cybercom.logging</groupId>
+      <artifactId>logging-cglib</artifactId>
+      <version>0.0.2</version>
+    </dependency>    
 
 EJB usage
 ----------
@@ -64,8 +84,8 @@ Join logging to your application
 
     <dependency>
       <groupId>com.cybercom.logging</groupId>
-	  <artifactId>logging-ejb</artifactId>
-	  <version>0.0.1</version>
+      <artifactId>logging-ejb</artifactId>
+      <version>0.0.2</version>
     </dependency>	
 
 Spring usage
@@ -89,9 +109,9 @@ For custom logging policy, Spring not need custom implementation, because policy
 Add to your pom dependency
 
     <dependency>
-	  <groupId>com.cybercom.logging</groupId>
-	  <artifactId>logging-spring</artifactId>
-	  <version>0.0.1</version>
+      <groupId>com.cybercom.logging</groupId>
+      <artifactId>logging-spring</artifactId>
+      <version>0.0.2</version>
     </dependency>	
 
 Configure the bean

@@ -73,17 +73,14 @@ public class LoggedSpringAspect {
       this.markerProvider = markerProvider;
    }
 
-   public void setExcludedCustomTypes(List<String> excludedNames) throws ClassNotFoundException {
-      for (String className : excludedNames) {
-         excludedCustomTypes.add(Class.forName(className));
-      }
+   public void setExcludedCustomTypes(List<Class<?>> excludedNames) throws ClassNotFoundException {
+      excludedCustomTypes.addAll(excludedNames);
    }
 
    public void setSerializers(List<JsonSerializer<?>> serializers) {
       this.serializers = serializers;
    }
 
-   
    public void setExcludeDefaultTypes(boolean excludeDefaultTypes) {
       this.excludeDefaultTypes = excludeDefaultTypes;
    }
