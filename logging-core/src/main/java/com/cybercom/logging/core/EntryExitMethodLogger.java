@@ -78,7 +78,7 @@ public abstract class EntryExitMethodLogger {
     * print object to logs except byte array, when length is logged only 
     * (byte array is usually file content and logging content is useless).
     * Mapper can be enhanced by custom serializers 
-    * @param excludedCustomTypes2 List of fully qualified name of classes which must NOT be logged.
+    * @param excludedCustomTypes List of fully qualified name of classes which must NOT be logged.
     * Good candidate is class with private data or huge class 
     * @param excludeDefaultTypes Some classes, for example javax.servlet.ServletRequest do not produce useful info when logged
     * If true, those classes are ignored, otherwise are not ignored 
